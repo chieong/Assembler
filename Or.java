@@ -1,14 +1,11 @@
-
-public class Or extends Instructions{
+public class Or extends Instructions {
     public Or(String[] parts) {
         super(parts);
-        resolveRegisterAddresses();
-        assemble();
     }
 
+    @Override
     public void assemble() {
-            formatCode = String.format("X%s%s%sXX%s", asmParts[3], asmParts[2], asmParts[1], "0011");
-            binaryCode = formatCodeToBinaryCode(formatCode);
+        formatCode = String.format("X%s%s%sXX%s", fitWidth(asmParts[3], 3), fitWidth(asmParts[2], 3), fitWidth(asmParts[1], 3), "0011");
+        binaryCode = formatCodeToBinaryCode(formatCode);
     }
-
 }

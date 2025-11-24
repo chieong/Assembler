@@ -1,13 +1,11 @@
-
-public class Ble extends Instructions{
+public class Ble extends Instructions {
     public Ble(String[] parts) {
         super(parts);
-        resolveRegisterAddresses();
-        assemble();
     }
 
+    @Override
     public void assemble() {
-            formatCode = String.format("X%s%s%sXX%s", asmParts[1], asmParts[2], asmParts[3], "0001");
-            binaryCode = formatCodeToBinaryCode(formatCode);
+        formatCode = String.format("0%s%s%sXX%s", fitWidth(asmParts[2], 3), fitWidth(asmParts[1], 3), fitWidth(asmParts[3], 3), "0001");
+        binaryCode = formatCodeToBinaryCode(formatCode);
     }
 }
