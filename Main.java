@@ -1,12 +1,24 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        FileOutput fout;
         Scanner userInput = new Scanner(System.in);
 
-        do {
-            System.out.println("Enter Operation Code:");
+        String fileName;
+        System.out.print("Enter the output file name: ");
+        fileName = userInput.nextLine();
+        fout = new FileOutput(fileName);
+        
+        while (true) {
+            System.out.println("Enter Operation Code (# for save file):");
             String operationCode = userInput.nextLine();
+
+            if (operationCode.equals("#")) {
+                break;
+            }
+
             String[] parts = operationCode.split(" ");
 
             Instructions instruction = null;
@@ -71,8 +83,15 @@ public class Main {
             instruction.printBinaryCode();
             instruction.printHexCode();
             System.out.println();
-        } while (userInput.hasNextLine());
-
+            fout.addCode(instruction.gethexCode());
+        }
+        try{
+            fout.outputToFile();
+        } catch (IOException e) {
+            System.out.println("An error occurred while writing to the file: " + e.getMessage());
+        } finally {
+            System.out.println("The code has been succesfully saved to " + fileName);
+        }
         userInput.close();
     }
 }

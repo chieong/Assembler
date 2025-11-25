@@ -55,4 +55,8 @@ public abstract class Instructions {
         str = String.format("%1$" + n + "s", str).replace(' ', '0');
         return str.substring(str.length() - n, str.length());
     }
+    
+    public String gethexCode() {
+        return Integer.toHexString(Integer.parseInt(binaryCode, 2));
+    }
 }
