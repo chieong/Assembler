@@ -5,7 +5,8 @@ public class Ori extends Instructions {
 
     @Override
     public void assemble() {
-        formatCode = String.format("%s%s%sXX%s", fitWidth(asmParts[3], 4), fitWidth(asmParts[2], 3), fitWidth(asmParts[1], 3), "0111");
+        String i = fitWidth(asmParts[3], 6);
+        formatCode = String.format("%s%s%s%s%s", i.substring(0, 4), fitWidth(asmParts[2], 3), fitWidth(asmParts[1], 3), i.substring(4), "0111");
         binaryCode = formatCodeToBinaryCode(formatCode);
     }
 }
