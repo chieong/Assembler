@@ -23,6 +23,7 @@ public class Main {
             if (operationCode.equals("#")) {
                 break;
             }
+            System.out.println("Instruction:\t" + operationCode);
 
             String[] parts = operationCode.split(" ");
 
